@@ -25,7 +25,7 @@ export default function Hero({ scrollToSection }) {
           Generate a personalized recipe in seconds
         </p>
         <Button
-          className="mt-3 bg-amber-500 hover:bg-amber-600"
+          className="mt-3 bg-amber-600 hover:bg-amber-500"
           size="lg"
           onClick={scrollToSection}
         >

@@ -168,7 +168,7 @@ export default function Form({ register }) {
             {([canSubmit, isSubmitting, isPristine]) => {
               return (
                 <Button
-                  className="mt-5 bg-amber-500 hover:bg-amber-600 w-full"
+                  className="mt-5 bg-amber-600 hover:bg-amber-500 w-full"
                   type="submit"
                   disabled={isPristine || !canSubmit || isSubmitting}
                 >

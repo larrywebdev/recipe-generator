@@ -5,7 +5,7 @@ export default function Footer() {
   const date = new Date();
   const year = date.getFullYear();
   return (
-    <footer className="relative p-3.5 mt-10 border-t gap-2 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] text-sm">
+    <footer className="bg-black text-white relative p-3.5 mt-10 border-t gap-2 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)] text-sm">
       <div className="grid">
         &copy;{year}
         <span className="text-2xl">Recipe Buddy</span>
