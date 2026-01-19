@@ -1,8 +1,25 @@
-export default function SidebarToggle({ toggleMenu, menuOpen }) {
+import useSidebarStore from "@/store/useSidebarStore";
+import { useEffect } from "react";
+
+export default function SidebarToggle() {
+  const menuOpen = useSidebarStore((state) => state.menuOpen);
+  const setMenuOpen = useSidebarStore((state) => state.setMenuOpen);
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto"; // cleanup
+    };
+  }, [menuOpen]);
   return (
     <div
-      className="w-10 h-full relative flex flex-col justify-center items-center cursor-pointer z-30"
-      onClick={toggleMenu}
+      className="w-10 h-full absolute justify-center items-center cursor-pointer z-3 right-0 top-4"
+      onClick={() => setMenuOpen(!menuOpen)}
     >
       <div className="relative h-6 w-8">
         {/* Top bar */}

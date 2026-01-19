@@ -11,21 +11,24 @@ const features = [
   },
   {
     title: `No more daily food stress`,
-    description: `Decide once, relax later. When meals are planned ahead, there&apos;s
+    description: `Decide once, relax later. When meals are planned ahead, there's
             nothing left to debate when hunger hits.`,
   },
 ];
 export default function FeaturesCard() {
   return (
-    <div className="py-15 px-5 grid">
+    <div className="pb-20 px-10 grid my-20">
       <h2 className="text-3xl font-semibold mt-4 mb-12 text-center">
-        Meals without the stress
+        <span className="text-amber-400">Meals</span> without the stress
       </h2>
-      <div className="flex">
+      <div className="grid md:flex gap-6">
         {features.map(({ title, description }, index) => (
-          <div key={index}>
+          <div
+            key={index}
+            className="flex-1 border-2 border-black/60 rounded-lg p-5"
+          >
             <h3 className="text-xl font-semibold">{title}</h3>
-            <p>{description}</p>
+            <p className="w-full">{description}</p>
           </div>
         ))}
       </div>

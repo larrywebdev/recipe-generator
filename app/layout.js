@@ -1,5 +1,6 @@
 import { Cherry_Cream_Soda } from "next/font/google";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 const cherryCreamSoda = Cherry_Cream_Soda({
   subsets: ["latin"],
@@ -14,6 +15,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${cherryCreamSoda.className} antialiased`}>
+        <Toaster position="top-center" />
         {children}
       </body>
     </html>

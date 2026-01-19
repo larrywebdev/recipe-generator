@@ -1,29 +1,22 @@
 "use client";
-import { useEffect, useState } from "react";
-import Drawer from "./Drawer";
-import SidebarToggle from "./SidebarToggle";
+import useSidebarStore from "@/store/useSidebarStore";
+import SavedRecipes from "./SavedRecipes";
 
 export default function Sidebar() {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const menuOpen = useSidebarStore((state) => state.menuOpen);
 
-  const toggleMenu = () => setMenuOpen((bool) => !bool);
-  const closeMenu = () => setMenuOpen(false);
-
-  useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-
-    return () => {
-      document.body.style.overflow = "auto"; // cleanup
-    };
-  }, [menuOpen]);
   return (
-    <>
-      <Drawer closeMenu={closeMenu} menuOpen={menuOpen} />
-      <SidebarToggle toggleMenu={toggleMenu} menuOpen={menuOpen} />
-    </>
+    <aside
+      className={`z-2 fixed top-0 right-0 h-screen w-75 bg-amber-500 text-center transform transition-transform duration-300 overflow-y-auto flex flex-col items-center justify-start pt-15 px-5 ${
+        menuOpen ? "translate-x-0" : "translate-x-full"
+      }`}
+    >
+      <nav className="w-full">
+        <div className="text-white border-b">Saved recipes</div>
+        <div className="w-full text-white h-90 bg-white rounded-sm pt-3 mt-5 overflow-scroll">
+          <SavedRecipes />
+        </div>
+      </nav>
+    </aside>
   );
 }

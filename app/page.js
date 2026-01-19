@@ -1,15 +1,18 @@
 "use client";
-import FeaturesCard from "@/components/FeaturesGrid";
+import FeaturesCard from "@/components/FeaturesCard";
 import Footer from "@/components/Footer";
 import Form from "@/components/Form";
 import Hero from "@/components/Hero";
 import Recipe from "@/components/Recipe";
+import Sidebar from "@/components/Sidebar";
+import SidebarToggle from "@/components/SidebarToggle";
+import useRecipeStore from "@/store/useRecipeStore";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Home() {
-  const [recipe, setRecipe] = useState("");
-  const [error, setError] = useState("");
+  const recipe = useRecipeStore((state) => state.recipe);
   const sectionRef = useRef(null);
 
   const registerSection = (node) => {
@@ -19,11 +22,26 @@ export default function Home() {
   const scrollToSection = () => {
     sectionRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+  const ref = useRef(null);
+  useEffect(() => {
+    if (!recipe) return;
+    ref.current?.scrollIntoView({ behavior: "smooth" });
+  }, [recipe]);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
+  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
   return (
     <>
+      <Sidebar />
+      <SidebarToggle />
       <Hero scrollToSection={scrollToSection} />
-      <div className="flex gap-10 my-30 px-20">
-        <div className="w-150">
+      <div className="grid gap-5 my-30">
+        <div className="w-full px-4">
           <h2 className="text-4xl font-semibold mt-4 mb-10">
             Recipe Buddy&apos;s Got You.
           </h2>
@@ -38,7 +56,7 @@ export default function Home() {
             decisions, and a little help when your kitchen feels uncooperative.
           </p>
         </div>
-        <div className="relative w-75 h-75">
+        <div className="relative w-65 h-65 mx-auto">
           <Image
             src="/19744.jpg"
             alt="food-image"
@@ -47,17 +65,35 @@ export default function Home() {
           />
         </div>
       </div>
-      <Form
-        setError={setError}
-        setRecipe={setRecipe}
-        register={registerSection}
-      />
-      {error ? (
-        <span className="text-lg font-medium">{error}</span>
-      ) : (
-        recipe && <Recipe recipe={recipe} />
-      )}
-      <Recipe />
+      <Form register={registerSection} />
+      <div
+        ref={ref}
+        className={`relative ${
+          recipe ? "h-[300vh] mt-35 pt-10" : ""
+        } overflow-hidden`}
+      >
+        {/* Background */}
+        {recipe && (
+          <>
+            <motion.div style={{ y: backgroundY }} className="absolute inset-0">
+              <Image
+                src="/top-view-perfect-breakfast-setup_23-2148297977.jpg"
+                alt="food"
+                fill
+                priority
+                className="object-cover"
+              />
+            </motion.div>
+            <div className="absolute inset-0 bg-white/50" />
+
+            {/* Foreground */}
+            <motion.div style={{ y: textY }} className="relative z-1">
+              <Recipe recipe={recipe} />
+            </motion.div>
+          </>
+        )}
+      </div>
+
       <FeaturesCard />
       <Footer />
     </>

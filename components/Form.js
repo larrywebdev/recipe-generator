@@ -7,9 +7,12 @@ import { Spinner } from "@/components/ui/spinner";
 import { Textarea } from "@/components/ui/textarea";
 import { generateRecipe } from "@/lib/actions";
 import { recipeSchema } from "@/lib/recipeSchema";
+import useRecipeStore from "@/store/useRecipeStore";
 import { useForm } from "@tanstack/react-form";
+import toast from "react-hot-toast";
 
-export default function Form({ setRecipe, setError, register }) {
+export default function Form({ register }) {
+  const setRecipe = useRecipeStore((state) => state.setRecipe);
   const form = useForm({
     defaultValues: {
       ingredients: "",
@@ -31,22 +34,22 @@ export default function Form({ setRecipe, setError, register }) {
         setRecipe(result.recipe);
         form.reset();
       } else {
-        setError(result?.error);
+        toast.error(result?.error || "Something went wrong");
       }
     },
   });
 
   return (
     <div
-      className="py-10 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]"
+      className="py-10 px-3 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] bg-gray-100 mb-10"
       ref={register}
     >
       <h2 className="flex items-center text-center text-2xl font-semibold">
-        <span className="h-px flex-1 bg-linear-to-r from-transparent to-gray-300"></span>
+        <span className="hidden h-px flex-1 bg-linear-to-r from-transparent to-gray-300"></span>
         <span className="px-3">Create Your Recipe</span>
-        <span className="h-px flex-1 bg-linear-to-l from-transparent to-gray-300"></span>
+        <span className="hidden h-px flex-1 bg-linear-to-l from-transparent to-gray-300"></span>
       </h2>
-      <div className="m-auto w-100">
+      <div className="m-auto w-full">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -165,7 +168,7 @@ export default function Form({ setRecipe, setError, register }) {
             {([canSubmit, isSubmitting, isPristine]) => {
               return (
                 <Button
-                  className="mt-5 w-full bg-amber-500 hover:bg-amber-600"
+                  className="mt-5 bg-amber-500 hover:bg-amber-600 w-full"
                   type="submit"
                   disabled={isPristine || !canSubmit || isSubmitting}
                 >

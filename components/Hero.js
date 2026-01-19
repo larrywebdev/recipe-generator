@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Header from "./Header";
 import { Button } from "./ui/button";
+import useSidebarStore from "@/store/useSidebarStore";
 
 export default function Hero({ scrollToSection }) {
+  const menuOpen = useSidebarStore((state) => state.menuOpen);
   return (
     <div className="relative h-screen overflow-hidden">
       <Header />
@@ -14,6 +16,7 @@ export default function Hero({ scrollToSection }) {
         className="object-cover"
       />
       <div className="absolute inset-0 bg-black/25" />
+      {menuOpen && <div className="absolute inset-0 bg-black/25 z-1" />}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center">
         <h1 className="text-5xl font-bold">
           Discover Your Next Favourite Recipe
