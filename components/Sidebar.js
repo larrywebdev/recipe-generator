@@ -13,7 +13,7 @@ export default function Sidebar() {
     >
       <nav className="w-full">
         <div className="text-white border-b">Saved recipes</div>
-        <div className="w-full text-white h-90 bg-white rounded-sm pt-3 mt-5 overflow-scroll">
+        <div className="w-full text-white h-90 bg-white rounded-sm pt-3 mt-5 overflow-y-auto">
           <SavedRecipes />
         </div>
       </nav>

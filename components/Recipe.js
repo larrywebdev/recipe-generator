@@ -20,11 +20,11 @@ export default function Recipe({ recipe }) {
   }
 
   return (
-    <div className="mt-5 max-w-500 p-10 mx-3 border-2 border-black/40 rounded-2xl">
+    <div className="mt-5 p-5 sm:p-10 mx-3">
       <h2 className="flex items-center text-center text-2xl font-semibold mb-5">
-        <span className="h-px flex-1 bg-linear-to-r from-transparent to-gray-300"></span>
+        <span className="h-px flex-1 bg-linear-to-r from-transparent to-gray-500"></span>
         <span className="px-3">Ready</span>
-        <span className="h-px flex-1 bg-linear-to-l from-transparent to-gray-300"></span>
+        <span className="h-px flex-1 bg-linear-to-l from-transparent to-gray-500"></span>
       </h2>
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
@@ -40,7 +40,7 @@ export default function Recipe({ recipe }) {
           li: ({ children }) => (
             <li className="my-1 leading-relaxed list-disc">{children}</li>
           ),
-          hr: () => <hr className="my-4" />,
+          hr: () => <hr className="my-4 border-gray-500" />,
         }}
       >
         {recipeMd}

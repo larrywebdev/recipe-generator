@@ -6,7 +6,7 @@ import useSidebarStore from "@/store/useSidebarStore";
 export default function Hero({ scrollToSection }) {
   const menuOpen = useSidebarStore((state) => state.menuOpen);
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative h-screen overflow-hidden max-h-200">
       <Header />
       <Image
         src="/hero.jpg"

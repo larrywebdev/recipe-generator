@@ -7,7 +7,6 @@ import Recipe from "@/components/Recipe";
 import Sidebar from "@/components/Sidebar";
 import SidebarToggle from "@/components/SidebarToggle";
 import useRecipeStore from "@/store/useRecipeStore";
-import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
@@ -28,20 +27,13 @@ export default function Home() {
     ref.current?.scrollIntoView({ behavior: "smooth" });
   }, [recipe]);
 
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "25%"]);
-  const textY = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
   return (
     <>
       <Sidebar />
       <SidebarToggle />
       <Hero scrollToSection={scrollToSection} />
-      <div className="grid gap-5 my-30">
-        <div className="w-full px-4">
+      <div className="grid sm:flex sm:items-center gap-5 my-30 px-4 max-w-7xl mx-auto">
+        <div className="max-w-200">
           <h2 className="text-4xl font-semibold mt-4 mb-10">
             Recipe Buddy&apos;s Got You.
           </h2>
@@ -56,7 +48,7 @@ export default function Home() {
             decisions, and a little help when your kitchen feels uncooperative.
           </p>
         </div>
-        <div className="relative w-65 h-65 mx-auto">
+        <div className="relative w-65 h-65 mx-auto shrink-0">
           <Image
             src="/19744.jpg"
             alt="food-image"
@@ -66,32 +58,37 @@ export default function Home() {
         </div>
       </div>
       <Form register={registerSection} />
-      <div
-        ref={ref}
-        className={`relative ${
-          recipe ? "h-[300vh] mt-35 pt-10" : ""
-        } overflow-hidden`}
-      >
-        {/* Background */}
-        {recipe && (
-          <>
-            <motion.div style={{ y: backgroundY }} className="absolute inset-0">
-              <Image
-                src="/top-view-perfect-breakfast-setup_23-2148297977.jpg"
-                alt="food"
-                fill
-                priority
-                className="object-cover"
-              />
-            </motion.div>
-            <div className="absolute inset-0 bg-white/50" />
 
-            {/* Foreground */}
-            <motion.div style={{ y: textY }} className="relative z-1">
-              <Recipe recipe={recipe} />
-            </motion.div>
-          </>
-        )}
+      <div className="px-5">
+        <div
+          ref={ref}
+          className={`relative ${
+            recipe
+              ? "h-150 w-full mt-35 mx-auto border rounded-md pb-5 max-w-7xl"
+              : ""
+          }`}
+        >
+          {/* Background */}
+          {recipe && (
+            <>
+              <div className="absolute inset-0 bg-cover bg-center">
+                <Image
+                  src="/top-view-perfect-breakfast-setup_23-2148297977.jpg"
+                  alt="food"
+                  fill
+                  priority
+                  className="object-cover"
+                />
+              </div>
+              <div className="absolute inset-0 bg-white/75" />
+
+              {/* Foreground */}
+              <div className="relative z-1 h-full overflow-y-auto">
+                <Recipe recipe={recipe} />
+              </div>
+            </>
+          )}
+        </div>
       </div>
 
       <FeaturesCard />

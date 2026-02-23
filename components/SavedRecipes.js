@@ -20,7 +20,7 @@ export default function SavedRecipes() {
         }}
         className="w-57.5"
       >
-        <h3 className="bg-gray-100 text-black rounded-sm text-[12px] p-2 truncate mt-1 cursor-pointer">
+        <h3 className="bg-gray-100 text-black rounded-sm text-[12px] p-2 truncate mt-1 cursor-pointer text-start">
           <span>{index + 1 + "."}</span> {recipeTitles}
         </h3>
       </button>

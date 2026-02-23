@@ -25,9 +25,10 @@ export default function Form({ register }) {
       onSubmit: recipeSchema,
     },
     onSubmit: async ({ value }) => {
+      setRecipe(null);
       const fd = new FormData();
       Object.entries(value).forEach(([key, value]) =>
-        fd.append(key, String(value))
+        fd.append(key, String(value)),
       );
       const result = await generateRecipe(fd);
       if (result?.success) {
@@ -41,15 +42,15 @@ export default function Form({ register }) {
 
   return (
     <div
-      className="py-10 px-3 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] bg-gray-100 mb-10"
+      className="py-10 px-3 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] bg-gray-100 mb-10 max-w-7xl mx-auto"
       ref={register}
     >
       <h2 className="flex items-center text-center text-2xl font-semibold">
-        <span className="hidden h-px flex-1 bg-linear-to-r from-transparent to-gray-300"></span>
-        <span className="px-3">Create Your Recipe</span>
-        <span className="hidden h-px flex-1 bg-linear-to-l from-transparent to-gray-300"></span>
+        <span className="hidden sm:flex h-px flex-1 bg-linear-to-r from-transparent to-gray-300"></span>
+        <span className="px-3 mx-auto">Create Your Recipe</span>
+        <span className="hidden sm:flex h-px flex-1 bg-linear-to-l from-transparent to-gray-300"></span>
       </h2>
-      <div className="m-auto w-full">
+      <div className="m-auto w-full sm:w-150">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -63,7 +64,7 @@ export default function Form({ register }) {
                   What ingredients do you have?
                 </Label>
                 <Textarea
-                  className="resize-none mt-1"
+                  className="resize-none mt-1 h-25"
                   id={field.name}
                   value={field.state.value}
                   onChange={(e) => field.handleChange(e.target.value)}
@@ -108,6 +109,7 @@ export default function Form({ register }) {
             {(field) => (
               <>
                 <Dropdown
+                  modal={false}
                   label="Meal type"
                   placeholder="Select meal type"
                   value={field.state.value}

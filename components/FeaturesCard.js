@@ -17,7 +17,7 @@ const features = [
 ];
 export default function FeaturesCard() {
   return (
-    <div className="pb-20 px-10 grid my-20">
+    <div className="pb-20 px-5 sm:px-2 grid my-20 mx-auto max-w-7xl">
       <h2 className="text-3xl font-semibold mt-4 mb-12 text-center">
         <span className="text-amber-400">Meals</span> without the stress
       </h2>
@@ -25,7 +25,7 @@ export default function FeaturesCard() {
         {features.map(({ title, description }, index) => (
           <div
             key={index}
-            className="flex-1 border-2 border-black/60 rounded-lg p-5"
+            className="flex-1 border-2 border-black/60 rounded-lg p-5 min-h-35"
           >
             <h3 className="text-xl font-semibold">{title}</h3>
             <p className="w-full">{description}</p>
