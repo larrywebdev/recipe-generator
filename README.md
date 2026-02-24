@@ -11,7 +11,8 @@ The application uses the Gemini API to dynamically generate structured, readable
 Deployed on Vercel.
 
 [Live Demo](https://recipe-generator-six-pied.vercel.app/)
-![Recipe Generator Demo](https://res.cloudinary.com/dh4gfd8ey/video/upload/v1771963915/2026-02-24_20-46-11_m04cdy.gif)
+
+![Recipe Generator Demo](https://res.cloudinary.com/dh4gfd8ey/video/upload/v1771963915/2026-02-24_20-46-11_m04cdy.mp4)
 
 ---
 
@@ -73,6 +74,7 @@ There is no authentication layer. The application is designed as a streamlined p
 ### 1. Clone the repository
 
 git clone https://github.com/larrywebdev/recipe-generator
+
 cd recipe-generator
 
 ### 2. Install dependencies
@@ -111,8 +113,7 @@ npm run start
 
 Required:
 
-GEMINI_API_KEY
-Used to authenticate requests to the Gemini API.
+GEMINI_API_KEY(Used to authenticate requests to the Gemini API.)
 
 ---
 
