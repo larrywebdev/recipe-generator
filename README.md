@@ -12,7 +12,7 @@ Deployed on Vercel.
 
 [Live Demo](https://recipe-generator-six-pied.vercel.app/)
 
-[![Recipe Generator Demo](https://res.cloudinary.com/dh4gfd8ey/video/upload/v1771963915/2026-02-24_20-46-11_m04cdy.jpg)](https://res.cloudinary.com/dh4gfd8ey/video/upload/v1771963915/2026-02-24_20-46-11_m04cdy.mp4)
+[![Recipe Generator Demo](https://res.cloudinary.com/dh4gfd8ey/video/upload/v1771963915/2026-02-24_20-46-11_m04cdy.gif)](https://res.cloudinary.com/dh4gfd8ey/video/upload/v1771963915/2026-02-24_20-46-11_m04cdy.mp4)
 
 ---
 
